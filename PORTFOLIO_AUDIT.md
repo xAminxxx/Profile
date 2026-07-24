@@ -45,8 +45,7 @@ Updated 24 July 2026.
 - Featured work: OptiFlow Precal Insight, SmartWarehouse AI, and Intelligent Online Classroom.
 - Cloud and DevOps are supporting delivery capabilities, not the primary professional identity.
 
-## Remaining public-profile mismatch
+## Remaining verification limit
 
-- The public GitHub profile README still mentions seeking a PFE internship and overemphasizes blockchain. It should be updated separately to match the graduated, AI-first positioning.
-- The public Vercel deployment still serves the former portfolio build until the rebuilt repository is committed and deployed.
+- The public portfolio and GitHub profile README now use the same graduated, AI-first positioning.
 - LinkedIn blocks anonymous full-profile extraction; only indexed public signals and owner-supplied information were used.
