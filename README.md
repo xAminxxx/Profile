@@ -1,88 +1,27 @@
-# Mohamed Amin MAKNI - Portfolio
+# Mohamed Amin MAKNI — Engineering Portfolio
 
-A modern portfolio website showcasing expertise in AI, Machine Learning, and Blockchain technologies.
+A dark-first, responsive engineering portfolio built with Next.js 16, TypeScript, Tailwind CSS 4, and Lucide icons.
 
-## ✨ Features
+## Positioning
 
-- 🎨 Modern UI/UX with smooth animations
-- � Bilingual support (English & German)
-- 📱 Fully responsive design
-- � Dark mode support
-- 📊 Filterable project showcase
-- 📧 Contact form
+The site presents Mohamed Amin MAKNI as an AI Engineer and graduated Software Engineer focused on computer vision, document intelligence, RAG, LLMs, intelligent agents, backend architecture, and reliable AI delivery. OptiFlow Precal Insight is the primary engineering case study.
 
-## 🚀 Tech Stack
-
-- Next.js 14 + TypeScript
-- Tailwind CSS v4
-- Framer Motion
-- React Context (i18n)
-
-## � Tech Stack
-
-- Next.js 14 + TypeScript
-- Tailwind CSS v4
-- Framer Motion
-- React Context (i18n)
-
-## 🛠️ Quick Start
-
-```bash
-# Clone repository
-git clone https://github.com/xAminxxx/profile.git
-
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-```
-
-Visit [http://localhost:3000](http://localhost:3000)
-
-## 🛠️ Getting Started
-
-### Prerequisites
-
-- Node.js 18+ and npm installed
-- Git installed
-
-### Installation
-
-1. **Clone the repository**
-
-```bash
-git clone https://github.com/xAminxxx/profile.git
-cd profile
-```
-
-2. **Install dependencies**
+## Local development
 
 ```bash
 npm install
-```
-
-3. **Run the development server**
-
-```bash
 npm run dev
 ```
 
-4. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000).
 
-### Build for Production
+## Quality checks
 
 ```bash
+npm run lint
 npm run build
-npm start
 ```
 
-## 📱 Sections
+## Content maintenance
 
-- **Hero** - Introduction with animated background, CTAs, and language switcher
-- **About** - Biography, education, and personal info with profile photo
-- **Experience** - Timeline of work experience and projects with icons
-- **Projects** - Filterable project showcase with category-based gradients and demos
-- **Skills** - Technical skills organized by category with certifications
-- **Contact** - Get in touch form with social links and direct contact info
+Professional content is centralized in `src/data/portfolio.ts`. The printable CV source is `src/app/cv/page.tsx`, and its generated one-page PDF is published at `public/Mohamed-Amin-MAKNI-CV.pdf`. OptiFlow case-study details are in `src/data/optiflow.ts`; the project is confidential, so source code, screenshots, implementation artifacts, and demos must remain unpublished.

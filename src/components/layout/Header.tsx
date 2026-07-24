@@ -1,106 +1,88 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { profile } from "@/data/profile";
-import { useI18n } from "@/i18n/context";
-import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import { useEffect, useState } from "react";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import { profile } from "@/data/portfolio";
+
+const navigation = [
+  ["About", "about"],
+  ["Experience", "experience"],
+  ["Expertise", "expertise"],
+  ["Projects", "projects"],
+  ["Credentials", "credentials"],
+  ["Contact", "contact"],
+] as const;
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { t } = useI18n();
-
-  const navItems = [
-    { name: t.nav.about, href: "#about" },
-    { name: t.nav.experience, href: "#experience" },
-    { name: t.nav.projects, href: "#projects" },
-    { name: t.nav.skills, href: "#skills" },
-    { name: t.nav.contact, href: "#contact" },
-  ];
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [active, setActive] = useState("about");
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setActive(visible.target.id);
+      },
+      { rootMargin: "-25% 0px -65%", threshold: [0, 0.2, 0.6] },
+    );
+    navigation.forEach(([, id]) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+    return () => observer.disconnect();
   }, []);
 
-  const scrollToSection = (href: string) => {
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMobileMenuOpen(false);
-  };
+  function toggleTheme() {
+    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    window.localStorage.setItem("theme", next);
+  }
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo/Name */}
-          <button
-            onClick={() => scrollToSection("#")}
-            className="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-          >
-            {profile.name.split(" ")[0]}
-          </button>
+    <header className="site-header">
+      <nav className="nav-shell" aria-label="Primary navigation">
+        <a className="wordmark" href="#top" aria-label={`${profile.name}, home`}>
+          <span>{profile.monogram}</span>
+          <span className="wordmark-name">Mohamed Amin MAKNI</span>
+        </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
-              >
-                {item.name}
-              </button>
-            ))}
-            <LanguageSwitcher />
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+        <div className={`nav-links ${menuOpen ? "is-open" : ""}`}>
+          {navigation.map(([label, id]) => (
+            <a
+              key={id}
+              href={`/#${id}`}
+              aria-current={active === id ? "location" : undefined}
+              onClick={() => setMenuOpen(false)}
+            >
+              {label}
+            </a>
+          ))}
+          {profile.cv.available ? (
+            <a className="cv-link" href={profile.cv.path} download>
+              Download CV
+            </a>
+          ) : (
+            <span className="cv-disabled" aria-disabled="true">CV unavailable</span>
+          )}
         </div>
 
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-left text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium py-2"
-                >
-                  {item.name}
-                </button>
-              ))}
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                <LanguageSwitcher />
-              </div>
-            </div>
-          </div>
-        )}
+        <div className="nav-actions">
+          <button className="icon-button theme-button" onClick={toggleTheme} aria-label="Toggle color theme">
+            <Sun className="sun-icon" size={18} />
+            <Moon className="moon-icon" size={18} />
+          </button>
+          <button
+            className="icon-button menu-button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            aria-label="Toggle navigation"
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
     </header>
   );
