@@ -4,7 +4,7 @@ A dark-first, responsive engineering portfolio built with Next.js 16, TypeScript
 
 ## Positioning
 
-The site presents Mohamed Amin MAKNI as an AI Engineer and graduated Software Engineer focused on computer vision, document intelligence, RAG, LLMs, intelligent agents, backend architecture, and reliable AI delivery. OptiFlow Precal Insight is the primary engineering case study.
+The site presents Mohamed Amin MAKNI as an AI Engineer and Software Engineer focused on computer vision, document intelligence, RAG, LLMs, intelligent agents, backend architecture, and reliable AI delivery. OptiFlow Precal Insight is the primary engineering case study.
 
 ## Local development
 

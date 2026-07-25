@@ -216,7 +216,7 @@ export const education = [
     degree: "National Engineering Degree in Computer Engineering",
     institution: "International Institute of Technology (IIT)",
     location: "Sfax, Tunisia",
-    status: "Graduated · 18 July 2026",
+    status: "Software Engineering & Business Intelligence",
   },
   {
     degree: "Engineering Preparatory Program",
