@@ -14,7 +14,7 @@ Updated 24 July 2026.
 
 - National Engineering Degree in Computer Engineering, International Institute of Technology (IIT), Sfax.
 - Specialization: Software Engineering and Business Intelligence.
-- Graduation date confirmed by the portfolio owner: 18 July 2026.
+- Graduation status confirmed by the portfolio owner.
 - Engineering Preparatory Program at IPEIS, completed 2021–2023.
 - Certiport Information Technology Specialist — Python, passed 27 March 2024 with 880/1000.
 - Certiport Information Technology Specialist — Artificial Intelligence, passed 14 October 2024 with 889/1000.
